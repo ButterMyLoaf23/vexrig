@@ -7,12 +7,12 @@
 | Field | Value |
 |---|---|
 | **Feature ID** | F3 |
-| **Section** | PC Parts |
+| **Section** | PC Parts Catalog |
 | **Severity** | MAJOR |
-| **Markets** | N/A — student project |
-| **Status (today)** | MISSING |
-| **Estimated effort** | S (1w) |
-| **Owner (proposed)** | Me / project developer |
+| **Markets** | Anyone looking to build a computer |
+| **Status (today)** | Working on |
+| **Estimated effort** | 1-2 days |
+| **Owner (proposed)** | Myself |
 | **Depends on** | F1 |
 | **Unblocks** | F4, F5 |
 
@@ -20,7 +20,7 @@
 
 ## 1. Problem Statement
 
-A PC builder is not useful if users cannot see the parts they can choose from. VexRig needs a basic catalog of CPUs, GPUs, motherboards, RAM, storage, PSUs, cases, and coolers. The catalog should give enough information for users to understand what they are selecting.
+A PC builder is not useful if users cannot see the parts they can choose from. My app needs a basic catalog of CPUs, GPUs, motherboards, RAM, storage, PSUs, cases, and coolers. The catalog should give enough information for users to understand what they are selecting.
 
 ## 2. Goals
 

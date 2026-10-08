@@ -9,10 +9,10 @@
 | **Feature ID** | F2 |
 | **Section** | User Accounts |
 | **Severity** | MAJOR |
-| **Markets** | N/A — student project |
-| **Status (today)** | MISSING |
-| **Estimated effort** | S (1w) |
-| **Owner (proposed)** | Me / project developer |
+| **Markets** | Anyone looking to build a computer |
+| **Status (today)** | Working on |
+| **Estimated effort** | 1 day |
+| **Owner (proposed)** | Myself |
 | **Depends on** | F1 |
 | **Unblocks** | F5, F8 |
 
@@ -20,7 +20,7 @@
 
 ## 1. Problem Statement
 
-Users need an account if they are going to save their PC builds. VexRig needs a simple way for someone to register, log in, and stay logged in while using the site. This also gives the backend a way to know which builds belong to which user.
+Users need an account if they are going to save their PC builds. My app needs a simple way for someone to register, log in, and stay logged in while using the site. This also gives the backend a way to know which builds belong to which user.
 
 ## 2. Goals
 

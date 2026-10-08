@@ -7,12 +7,12 @@
 | Field | Value |
 |---|---|
 | **Feature ID** | F7 |
-| **Section** | PC Builder |
+| **Section** | Compatibility |
 | **Severity** | BLOCKER |
-| **Markets** | N/A — student project |
-| **Status (today)** | MISSING |
-| **Estimated effort** | S (1w) |
-| **Owner (proposed)** | Me / project developer |
+| **Markets** | Anyone looking to build a computer |
+| **Status (today)** | Not started |
+| **Estimated effort** | 1-2 days |
+| **Owner (proposed)** | Myself |
 | **Depends on** | F5, F6 |
 | **Unblocks** | F8 |
 
@@ -20,7 +20,7 @@
 
 ## 1. Problem Statement
 
-One of the main reasons someone would use VexRig is to avoid buying PC parts that do not work together. The site needs to check the most important compatibility rules and tell the user what is wrong in a way that is easy to understand.
+One of the main reasons someone would use my site is to avoid buying PC parts that do not work together. The site needs to check the most important compatibility rules and tell the user what is wrong in a way that is easy to understand.
 
 ## 2. Goals
 

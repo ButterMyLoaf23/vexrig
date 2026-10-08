@@ -7,12 +7,12 @@
 | Field | Value |
 |---|---|
 | **Feature ID** | F6 |
-| **Section** | PC Builder |
+| **Section** | Pricing |
 | **Severity** | MAJOR |
-| **Markets** | N/A — student project |
-| **Status (today)** | MISSING |
-| **Estimated effort** | XS (≤1d) |
-| **Owner (proposed)** | Me / project developer |
+| **Markets** | Anyone looking to build a computer |
+| **Status (today)** | Not started |
+| **Estimated effort** | less than a day |
+| **Owner (proposed)** | Myself |
 | **Depends on** | F5 |
 | **Unblocks** | F7, F8 |
 
@@ -20,7 +20,7 @@
 
 ## 1. Problem Statement
 
-Users need to know roughly how much their PC build costs while they are choosing parts. VexRig should automatically add the prices of the selected parts and show the current estimated total.
+Users need to know roughly how much their PC build costs while they are choosing parts. My site should automatically add the prices of the selected parts and show the current estimated total.
 
 ## 2. Goals
 

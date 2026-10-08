@@ -7,12 +7,12 @@
 | Field | Value |
 |---|---|
 | **Feature ID** | F4 |
-| **Section** | PC Parts |
+| **Section** | PC Parts Search |
 | **Severity** | MAJOR |
-| **Markets** | N/A — student project |
-| **Status (today)** | MISSING |
-| **Estimated effort** | S (1w) |
-| **Owner (proposed)** | Me / project developer |
+| **Markets** | Anyone looking to build a computer |
+| **Status (today)** | Not started |
+| **Estimated effort** | 1 day |
+| **Owner (proposed)** | Myself |
 | **Depends on** | F3 |
 | **Unblocks** | F5 |
 
@@ -20,7 +20,7 @@
 
 ## 1. Problem Statement
 
-A large list of PC parts can be annoying to look through, especially for someone who does not know much about PC parts yet. VexRig needs simple search and filtering so users can find the parts they actually want without scrolling through everything.
+A large list of PC parts can be annoying to look through, especially for someone who does not know much about PC parts yet. My app needs simple search and filtering so users can find the parts they actually want without scrolling through everything.
 
 ## 2. Goals
 

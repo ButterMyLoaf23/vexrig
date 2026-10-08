@@ -7,12 +7,12 @@
 | Field | Value |
 |---|---|
 | **Feature ID** | F5 |
-| **Section** | PC Builder |
+| **Section** | PC Builder Edit/Create |
 | **Severity** | BLOCKER |
-| **Markets** | N/A — student project |
-| **Status (today)** | MISSING |
-| **Estimated effort** | S (1w) |
-| **Owner (proposed)** | Me / project developer |
+| **Markets** | Anyone looking to build a computer |
+| **Status (today)** | Not started |
+| **Estimated effort** | 1-2 days |
+| **Owner (proposed)** | Myself |
 | **Depends on** | F2, F3 |
 | **Unblocks** | F6, F7, F8 |
 
@@ -20,7 +20,7 @@
 
 ## 1. Problem Statement
 
-This is the main part of VexRig. Users need to be able to choose parts and put them into a PC build. They should also be able to replace or remove parts while working on the build. Without this feature, the rest of the project does not have a real build to calculate or check.
+This is the main part of my site. Users need to be able to choose parts and put them into a PC build. They should also be able to replace or remove parts while working on the build. Without this feature, the rest of the project does not have a real build to calculate or check.
 
 ## 2. Goals
 

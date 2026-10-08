@@ -7,12 +7,12 @@
 | Field | Value |
 |---|---|
 | **Feature ID** | F8 |
-| **Section** | Saved Builds |
+| **Section** | Saved/Delete Builds |
 | **Severity** | MAJOR |
-| **Markets** | N/A — student project |
-| **Status (today)** | MISSING |
-| **Estimated effort** | S (1w) |
-| **Owner (proposed)** | Me / project developer |
+| **Markets** | Anyone looking to build a computer |
+| **Status (today)** | Not started |
+| **Estimated effort** | 1 day |
+| **Owner (proposed)** | Myself |
 | **Depends on** | F2, F5, F6, F7 |
 | **Unblocks** | None for MVP |
 
@@ -20,7 +20,7 @@
 
 ## 1. Problem Statement
 
-Users should not have to rebuild their PC every time they come back to VexRig. They need a place where they can see their saved builds and delete builds they no longer want. This finishes the basic account/build workflow.
+Users should not have to rebuild their PC every time they come back to my site. They need a place where they can see their saved builds and delete builds they no longer want. This finishes the basic account/build workflow.
 
 ## 2. Goals
 
