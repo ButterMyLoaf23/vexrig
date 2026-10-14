@@ -63,5 +63,15 @@ input, select { width: 100%; padding: .7rem .8rem; border: 1px solid #405269; bo
 .filters .button { margin: 0; }
 .result-count { margin: 1rem 0; }
 .empty-state { padding: 1.2rem; color: #aab6c7; }
+.auth-page { display: grid; place-items: center; min-height: 70vh; padding: 3rem 0; }
+.auth-card { width: min(100%, 440px); padding: 2rem; }
+.auth-card h1 { margin-bottom: .5rem; font-size: 2.5rem; }
+.auth-card form { display: grid; gap: 1rem; margin-top: 1.5rem; }
+.auth-card label { display: grid; gap: .4rem; color: #aab6c7; font-size: .9rem; }
+.auth-card .button { margin-top: .25rem; }
+.auth-card .button:disabled { cursor: wait; opacity: .65; }
+.form-error { margin: 0; color: #fca5a5; }
+.auth-switch { margin: 1.5rem 0 0; font-size: .9rem; }
+.auth-switch a { color: #7dd3fc; }
 @media (max-width: 850px) { .builder-grid { grid-template-columns: 1fr; } .builder-header, .page-heading { align-items: start; flex-direction: column; } .filters { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 520px) { .site-header { align-items: start; flex-direction: column; } .site-header nav { flex-wrap: wrap; } .filters { grid-template-columns: 1fr; } .panel-heading { align-items: stretch; flex-direction: column; } .panel-heading input { max-width: none; } }

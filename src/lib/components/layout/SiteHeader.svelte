@@ -8,6 +8,8 @@
 		<a href={`${base}/builder`}>PC Builder</a>
 		<a href={`${base}/parts`}>Parts</a>
 		<a href={`${base}/builds`}>My Builds</a>
+		<a href={`${base}/login`}>Log in</a>
+		<a href={`${base}/register`}>Create account</a>
 	</nav>
 </header>
 
