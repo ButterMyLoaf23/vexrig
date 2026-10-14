@@ -14,19 +14,21 @@
     "db:studio": "prisma studio"
   },
   "dependencies": {
-    "@prisma/client": "^6.17.0",
+    "@prisma/adapter-pg": "^7.10.0",
+    "@prisma/client": "^6.19.3",
     "bcryptjs": "^3.0.2",
     "cors": "^2.8.5",
-    "dotenv": "^17.2.2",
+    "dotenv": "^17.4.2",
     "express": "^5.1.0",
-    "jsonwebtoken": "^9.0.2"
+    "jsonwebtoken": "^9.0.2",
+    "pg": "^8.23.1"
   },
   "devDependencies": {
     "@sveltejs/adapter-static": "^3.0.10",
     "@sveltejs/kit": "^2.43.5",
     "@sveltejs/vite-plugin-svelte": "^6.2.1",
     "concurrently": "^9.2.1",
-    "prisma": "^6.17.0",
+    "prisma": "^6.19.3",
     "svelte": "^5.38.7",
     "vite": "^7.1.9"
   }
