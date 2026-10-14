@@ -1,0 +1,81 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           Int      @id @default(autoincrement())
+  username     String
+  email        String   @unique
+  passwordHash String
+  createdAt    DateTime @default(now())
+  builds       Build[]
+}
+
+model Component {
+  id              Int             @id @default(autoincrement())
+  name            String
+  category        ComponentCategory
+  brand           String
+  price           Decimal         @db.Decimal(10, 2)
+  description     String
+  cpuSocket       String?
+  ramType         String?
+  formFactor      String?
+  wattage         Int?
+  lengthMm        Int?
+  buildComponents BuildComponent[]
+  createdAt       DateTime        @default(now())
+}
+
+model Build {
+  id              Int             @id @default(autoincrement())
+  userId          Int
+  name            String
+  totalPrice      Decimal         @default(0) @db.Decimal(10, 2)
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+  user            User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  buildComponents BuildComponent[]
+
+  @@index([userId])
+}
+
+model BuildComponent {
+  id          Int       @id @default(autoincrement())
+  buildId     Int
+  componentId Int
+  slot        BuildSlot
+  slotIndex   Int       @default(0)
+  build       Build     @relation(fields: [buildId], references: [id], onDelete: Cascade)
+  component   Component @relation(fields: [componentId], references: [id])
+
+  @@unique([buildId, slot, slotIndex])
+  @@index([componentId])
+}
+
+enum ComponentCategory {
+  CPU
+  GPU
+  MOTHERBOARD
+  RAM
+  STORAGE
+  PSU
+  CASE
+  COOLER
+}
+
+enum BuildSlot {
+  CPU
+  GPU
+  MOTHERBOARD
+  RAM
+  STORAGE
+  PSU
+  CASE
+  COOLER
+}
