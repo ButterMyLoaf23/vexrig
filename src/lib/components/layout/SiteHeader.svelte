@@ -1,9 +1,13 @@
+<script>
+	import { base } from '$app/paths';
+</script>
+
 <header class="site-header">
-	<a href="/" aria-label="VexRig home">VexRig</a>
+	<a href={`${base}/`} aria-label="VexRig home">VexRig</a>
 	<nav aria-label="Main navigation">
-		<a href="/builder">PC Builder</a>
-		<a href="/parts">Parts</a>
-		<a href="/builds">My Builds</a>
+		<a href={`${base}/builder`}>PC Builder</a>
+		<a href={`${base}/parts`}>Parts</a>
+		<a href={`${base}/builds`}>My Builds</a>
 	</nav>
 </header>
 
