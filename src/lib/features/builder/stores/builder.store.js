@@ -25,3 +25,7 @@ export function removePart(slot) {
 		return next;
 	});
 }
+
+export function loadBuild(build) {
+	buildSelections.set(Object.fromEntries(build.components.map((item) => [item.slot, item.componentId])));
+}

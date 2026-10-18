@@ -1,17 +1,50 @@
 <script>
+	import { onMount } from 'svelte';
 	import { categories } from '$lib/data/parts';
 	import { formatCurrency } from '$lib/utils/currency';
 	import { getParts } from '$lib/features/catalog/api';
+	import { getBuild, saveBuild } from '$lib/features/builds/api';
 	import { checkCompatibility } from '../compatibility';
-	import { buildSelections, selectedBuildParts, selectedBuildTotal, selectedPartCount, removePart, selectPart } from '../stores/builder.store';
+	import { buildSelections, selectedBuildParts, selectedBuildTotal, selectedPartCount, loadBuild, removePart, selectPart } from '../stores/builder.store';
 
 	let search = '';
 	let activeCategory = 'all';
+	let buildName = 'My VexRig Build';
+	let buildId = null;
+	let saveMessage = '';
+	let saveError = '';
+
+	onMount(async () => {
+		const id = new URLSearchParams(window.location.search).get('id');
+		if (!id) return;
+		try {
+			const build = await getBuild(id);
+			buildId = build.id;
+			buildName = build.name;
+			loadBuild(build);
+		} catch (error) {
+			saveError = error.message;
+		}
+	});
 	$: visibleParts = getParts({ search, category: activeCategory });
 	$: compatibility = checkCompatibility($selectedBuildParts);
 
 	function addPart(part) {
 		selectPart(part.category, part);
+	}
+
+	async function saveCurrentBuild() {
+		saveMessage = '';
+		saveError = '';
+		try {
+			const components = Object.entries($buildSelections).map(([slot, componentId]) => ({ slot, componentId }));
+			const saved = await saveBuild({ id: buildId, name: buildName, components });
+			buildId = saved.id;
+			buildName = saved.name;
+			saveMessage = 'Build saved.';
+		} catch (error) {
+			saveError = error.message;
+		}
 	}
 </script>
 
@@ -42,11 +75,15 @@
 
 	<aside class="panel build-panel" aria-labelledby="build-heading">
 		<div class="panel-heading"><div><h2 id="build-heading">Your build</h2><p>Choose another part to replace a selection.</p></div></div>
+		<label class="build-name">Build name<input bind:value={buildName} placeholder="My gaming PC" /></label>
 		<div class="slot-list">
 			{#each categories as category}
 				<div class="slot-row"><div><span class="part-category">{category.label}</span>{#if $selectedBuildParts[category.value]}<strong>{$selectedBuildParts[category.value].brand} {$selectedBuildParts[category.value].name}</strong>{:else}<span class="muted">Empty slot</span>{/if}</div>{#if $selectedBuildParts[category.value]}<button class="remove-button" aria-label={`Remove ${category.label}`} on:click={() => removePart(category.value)}>Remove</button>{/if}</div>
 			{/each}
 		</div>
 		<div class={`compatibility ${compatibility.status}`}><h3>{compatibility.status === 'compatible' ? '✓ Compatibility looks good' : compatibility.status === 'warning' ? '⚠ Compatibility needs review' : '× Compatibility issue'}</h3>{#if compatibility.issues.length}<ul>{#each compatibility.issues as issue}<li>{issue}</li>{/each}</ul>{/if}{#if compatibility.warnings.length}<ul>{#each compatibility.warnings as warning}<li>{warning}</li>{/each}</ul>{/if}{#if !compatibility.issues.length && !compatibility.warnings.length}<p>Select more parts to run additional checks.</p>{/if}</div>
+		<button class="button" on:click={saveCurrentBuild}>Save build</button>
+		{#if saveMessage}<p class="save-message">{saveMessage}</p>{/if}
+		{#if saveError}<p class="form-error" role="alert">{saveError}. Log in before saving a build.</p>{/if}
 	</aside>
 </div>
