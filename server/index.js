@@ -10,11 +10,19 @@ import compatibilityRouter from './routes/compatibility.js';
 const app = express();
 const port = Number(process.env.PORT ?? 3000);
 
-const configuredFrontendUrl = process.env.FRONTEND_URL ?? 'http://localhost:5173';
+
+const configuredFrontendUrls = [
+	...(process.env.FRONTEND_URL ?? 'http://localhost:5173').split(','),
+	'https://buttermyloaf23.github.io/vexrig'
+]
+	.map((url) => url.trim().replace(/\/+$/, ''))
+	.filter(Boolean);
+
 app.use(cors({
 	origin: (origin, callback) => {
 		const isLocalDevelopment = process.env.NODE_ENV !== 'production' && /^http:\/\/localhost:\d+$/.test(origin ?? '');
-		const isAllowed = !origin || origin === configuredFrontendUrl || isLocalDevelopment;
+		const normalizedOrigin = origin?.replace(/\/+$/, '');
+		const isAllowed = !origin || configuredFrontendUrls.includes(normalizedOrigin) || isLocalDevelopment;
 		callback(null, isAllowed);
 	},
 	credentials: true
