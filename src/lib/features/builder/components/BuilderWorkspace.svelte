@@ -2,7 +2,7 @@
 	import { onMount } from 'svelte';
 	import { categories } from '$lib/data/parts';
 	import { formatCurrency } from '$lib/utils/currency';
-	import { getParts } from '$lib/features/catalog/api';
+	import { loadParts } from '$lib/features/catalog/api';
 	import { getBuild, saveBuild } from '$lib/features/builds/api';
 	import { checkCompatibility } from '../compatibility';
 	import { buildSelections, selectedBuildParts, selectedBuildTotal, selectedPartCount, loadBuild, removePart, selectPart } from '../stores/builder.store';
@@ -13,8 +13,10 @@
 	let buildId = null;
 	let saveMessage = '';
 	let saveError = '';
+	let catalogParts = [];
 
 	onMount(async () => {
+		catalogParts = await loadParts();
 		const id = new URLSearchParams(window.location.search).get('id');
 		if (!id) return;
 		try {
@@ -26,7 +28,12 @@
 			saveError = error.message;
 		}
 	});
-	$: visibleParts = getParts({ search, category: activeCategory });
+	$: visibleParts = catalogParts.filter((part) => {
+		const normalizedSearch = search.trim().toLowerCase();
+		const matchesSearch = !normalizedSearch || `${part.brand} ${part.name}`.toLowerCase().includes(normalizedSearch);
+		const matchesCategory = activeCategory === 'all' || part.category === activeCategory;
+		return matchesSearch && matchesCategory;
+	});
 	$: compatibility = checkCompatibility($selectedBuildParts);
 
 	function addPart(part) {
@@ -84,6 +91,6 @@
 		<div class={`compatibility ${compatibility.status}`}><h3>{compatibility.status === 'compatible' ? '✓ Compatibility looks good' : compatibility.status === 'warning' ? '⚠ Compatibility needs review' : '× Compatibility issue'}</h3>{#if compatibility.issues.length}<ul>{#each compatibility.issues as issue}<li>{issue}</li>{/each}</ul>{/if}{#if compatibility.warnings.length}<ul>{#each compatibility.warnings as warning}<li>{warning}</li>{/each}</ul>{/if}{#if !compatibility.issues.length && !compatibility.warnings.length}<p>Select more parts to run additional checks.</p>{/if}</div>
 		<button class="button" on:click={saveCurrentBuild}>Save build</button>
 		{#if saveMessage}<p class="save-message">{saveMessage}</p>{/if}
-		{#if saveError}<p class="form-error" role="alert">{saveError}. Log in before saving a build.</p>{/if}
+		{#if saveError}<p class="form-error" role="alert">{saveError}</p>{/if}
 	</aside>
 </div>
