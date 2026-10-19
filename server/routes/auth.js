@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { comparePassword, createAuthToken, getAuthCookieName, hashPassword, publicUser, setAuthCookie } from '../lib/auth.js';
+import { comparePassword, createAuthToken, getAuthCookieName, getAuthCookieOptions, hashPassword, publicUser, setAuthCookie } from '../lib/auth.js';
 import { prisma } from '../lib/prisma.js';
 import { requireAuth } from '../middleware/auth.js';
 
@@ -54,12 +54,7 @@ router.post('/login', async (request, response) => {
 });
 
 router.post('/logout', (_request, response) => {
-	response.clearCookie(getAuthCookieName(), {
-		httpOnly: true,
-		sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
-		secure: process.env.NODE_ENV === 'production',
-		path: '/'
-	});
+	response.clearCookie(getAuthCookieName(), getAuthCookieOptions());
 	return response.status(204).send();
 });
 
