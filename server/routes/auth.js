@@ -28,7 +28,7 @@ router.post('/register', async (request, response) => {
 		const user = await prisma.user.create({ data: { username, email, passwordHash } });
 		const token = createAuthToken(user);
 		setAuthCookie(response, token);
-		return response.status(201).json({ user: publicUser(user) });
+		return response.status(201).json({ user: publicUser(user), token });
 	} catch (error) {
 		if (error.code === 'P2002') return response.status(409).json({ message: 'Email is already in use.' });
 		console.error('Registration failed:', error);
@@ -45,8 +45,9 @@ router.post('/login', async (request, response) => {
 		const passwordMatches = user ? await comparePassword(password, user.passwordHash) : false;
 		if (!passwordMatches) return response.status(401).json({ message: 'Email or password is incorrect.' });
 
-		setAuthCookie(response, createAuthToken(user));
-		return response.json({ user: publicUser(user) });
+		const token = createAuthToken(user);
+		setAuthCookie(response, token);
+		return response.json({ user: publicUser(user), token });
 	} catch (error) {
 		console.error('Login failed:', error);
 		return response.status(500).json({ message: 'Unable to log in.' });

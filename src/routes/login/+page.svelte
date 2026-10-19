@@ -14,7 +14,7 @@
 		error = '';
 		try {
 			const response = await loginAccount({ email, password });
-			setCurrentUser(response.user);
+			setCurrentUser(response.user, response.token);
 			await goto(`${base}/builder`);
 		} catch (requestError) {
 			error = requestError.message;

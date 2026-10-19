@@ -1,5 +1,6 @@
 import { writable } from 'svelte/store';
 import { getCurrentUser, logoutAccount } from './api';
+import { clearAuthToken, setAuthToken } from '$lib/api/client';
 
 export const currentUser = writable(null);
 export const authReady = writable(false);
@@ -20,7 +21,8 @@ export async function loadCurrentUser() {
 	return currentUserRequest;
 }
 
-export function setCurrentUser(user) {
+export function setCurrentUser(user, token) {
+	setAuthToken(token);
 	currentUser.set(user ?? null);
 }
 
@@ -28,6 +30,7 @@ export async function logOut() {
 	try {
 		await logoutAccount();
 	} finally {
+		clearAuthToken();
 		currentUser.set(null);
 	}
 }
