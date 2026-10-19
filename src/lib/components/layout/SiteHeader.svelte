@@ -20,7 +20,7 @@
 		<a href={`${base}/builds`}>My Builds</a>
 		{#if $authReady}
 			{#if $currentUser}
-				<span class="user-label">{$currentUser.username}</span>
+				<a class="user-label" href={`${base}/profile`}>{$currentUser.username}</a>
 				<button class="logout-button" type="button" on:click={handleLogout}>Log out</button>
 			{:else}
 				<a href={`${base}/login`}>Log in</a>

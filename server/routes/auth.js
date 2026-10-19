@@ -54,7 +54,12 @@ router.post('/login', async (request, response) => {
 });
 
 router.post('/logout', (_request, response) => {
-	response.clearCookie(getAuthCookieName(), { httpOnly: true, sameSite: 'lax', secure: process.env.NODE_ENV === 'production', path: '/' });
+	response.clearCookie(getAuthCookieName(), {
+		httpOnly: true,
+		sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
+		secure: process.env.NODE_ENV === 'production',
+		path: '/'
+	});
 	return response.status(204).send();
 });
 
