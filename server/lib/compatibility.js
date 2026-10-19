@@ -14,7 +14,9 @@ export function checkServerCompatibility(components) {
 	if (motherboard && computerCase && motherboard.formFactor && computerCase.formFactor && motherboard.formFactor !== computerCase.formFactor) issues.push(`${motherboard.formFactor} motherboard does not match the case form factor ${computerCase.formFactor}.`);
 	if (gpu && computerCase && gpu.lengthMm && computerCase.lengthMm && gpu.lengthMm > computerCase.lengthMm) issues.push(`Graphics card is ${gpu.lengthMm}mm long, but the case record supports ${computerCase.lengthMm}mm.`);
 	if (psu && psu.wattage) {
-		const estimatedPower = components.reduce((total, component) => total + (component.wattage ?? 0), 100);
+		const estimatedPower = components
+			.filter((component) => component.category !== 'PSU')
+			.reduce((total, component) => total + (component.wattage ?? 0), 100);
 		if (estimatedPower > psu.wattage) issues.push(`Estimated draw is about ${estimatedPower}W, above the PSU's ${psu.wattage}W capacity.`);
 	}
 	if (components.length < 8) warnings.push('The build is incomplete, so only checks for selected parts were run.');

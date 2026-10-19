@@ -21,7 +21,7 @@
 <svelte:head><title>Parts Catalog — VexRig</title></svelte:head>
 
 <section class="catalog-page">
-	<div class="page-heading"><div><p class="eyebrow">Local catalog · no API key required</p><h1>Parts catalog</h1><p>Browse real component models from the starter catalog and add them to your build.</p></div><a class="button" href={`${base}/builder`}>Open builder</a></div>
+	<div class="page-heading"><div><p class="eyebrow">Component catalog</p><h1>Parts catalog</h1><p>Browse real component models from the starter catalog and add them to your build.</p></div><a class="button" href={`${base}/builder`}>Open builder</a></div>
 	<div class="filters panel">
 		<label>Search<input placeholder="Name or brand" bind:value={search} /></label>
 		<label>Category<select bind:value={category}><option value="all">All categories</option>{#each categories as item}<option value={item.value}>{item.label}</option>{/each}</select></label>

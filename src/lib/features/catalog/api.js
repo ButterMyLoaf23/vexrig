@@ -14,7 +14,7 @@ export async function loadParts() {
 				category: localPart?.category ?? remotePart.category.toLowerCase(),
 				id: remotePart.id,
 				socket: remotePart.cpuSocket ?? localPart?.socket,
-				powerDraw: remotePart.wattage ?? localPart?.powerDraw
+				powerDraw: localPart?.powerDraw ?? (remotePart.category === 'PSU' ? undefined : remotePart.wattage)
 			};
 		});
 	} catch {

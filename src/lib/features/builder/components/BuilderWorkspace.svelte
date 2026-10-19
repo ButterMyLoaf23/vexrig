@@ -59,7 +59,7 @@
 
 <section class="builder-header">
 	<div>
-		<p class="eyebrow">Local catalog · no API key required</p>
+		<p class="eyebrow">PC component catalog</p>
 		<h1>Build your PC</h1>
 		<p>Choose parts from the local catalog. VexRig checks common compatibility rules in your browser.</p>
 	</div>
