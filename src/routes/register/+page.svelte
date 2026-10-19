@@ -2,6 +2,7 @@
 	import { base } from '$app/paths';
 	import { goto } from '$app/navigation';
 	import { registerAccount } from '$lib/features/auth/api';
+	import { setCurrentUser } from '$lib/features/auth/store';
 
 	let username = '';
 	let email = '';
@@ -13,7 +14,8 @@
 		submitting = true;
 		error = '';
 		try {
-			await registerAccount({ username, email, password });
+			const response = await registerAccount({ username, email, password });
+			setCurrentUser(response.user);
 			await goto(`${base}/builder`);
 		} catch (requestError) {
 			error = requestError.message;
