@@ -1,6 +1,10 @@
 import { parts } from '$lib/data/parts';
 import { apiRequest } from '$lib/api/client';
 
+export async function getPriceOffers(componentId) {
+	return apiRequest(`/components/${componentId}/prices`);
+}
+
 let activeParts = parts;
 
 export async function loadParts() {

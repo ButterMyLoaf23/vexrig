@@ -44,6 +44,14 @@ input, select { width: 100%; padding: .7rem .8rem; border: 1px solid #405269; bo
 .part-card-top { display: flex; align-items: center; justify-content: space-between; gap: .75rem; }
 .part-card h2, .part-card h3 { margin: .55rem 0; font-size: 1rem; }
 .part-card p { min-height: 3.2rem; font-size: .9rem; }
+.part-card-actions { display: flex; flex-wrap: wrap; gap: .5rem; }
+.part-card-actions .button { margin-top: 0; }
+.price-comparison { margin-top: 1rem; padding-top: .9rem; border-top: 1px solid #2d4055; }
+.price-comparison h3 { margin-top: 0; font-size: .95rem; }
+.offer-list { display: grid; gap: .45rem; }
+.offer-row { display: grid; grid-template-columns: 1fr auto auto; align-items: center; gap: .6rem; font-size: .85rem; }
+.offer-row a { color: #7dd3fc; }
+.price-comparison small { display: block; margin-top: .75rem; line-height: 1.4; }
 .slot-list { display: grid; gap: .6rem; }
 .slot-row { display: flex; align-items: center; justify-content: space-between; gap: .7rem; padding: .75rem; border-radius: .5rem; background: #1a2634; }
 .slot-row > div { display: grid; gap: .2rem; }

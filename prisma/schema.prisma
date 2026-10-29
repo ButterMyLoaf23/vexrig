@@ -29,7 +29,35 @@ model Component {
   wattage         Int?
   lengthMm        Int?
   buildComponents BuildComponent[]
+  retailerOffers  RetailerOffer[]
   createdAt       DateTime        @default(now())
+}
+
+model RetailerOffer {
+  id          Int       @id @default(autoincrement())
+  componentId Int
+  retailer    Retailer
+  externalId  String?
+  url         String
+  price       Decimal?  @db.Decimal(10, 2)
+  currency    String    @default("USD")
+  inStock     Boolean?
+  fetchedAt   DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  component Component @relation(fields: [componentId], references: [id], onDelete: Cascade)
+
+  @@unique([componentId, retailer])
+  @@index([componentId])
+}
+
+enum Retailer {
+  AMAZON
+  WALMART
+  BEST_BUY
+  MICRO_CENTER
+  NEWEGG
 }
 
 model Build {

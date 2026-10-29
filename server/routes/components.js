@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import { prisma } from '../lib/prisma.js';
 import { normalizeCategory, serializeComponent } from '../lib/components.js';
+import { mergeRetailerOffers } from '../lib/prices.js';
 
 const router = Router();
 
@@ -47,6 +48,23 @@ router.get('/:id', async (request, response) => {
 	const component = await prisma.component.findUnique({ where: { id } });
 	if (!component) return response.status(404).json({ message: 'Component not found.' });
 	return response.json(serializeComponent(component));
+});
+
+router.get('/:id/prices', async (request, response) => {
+	const id = Number(request.params.id);
+	if (!Number.isInteger(id)) return response.status(400).json({ message: 'Invalid component ID.' });
+
+	try {
+		const component = await prisma.component.findUnique({
+			where: { id },
+			include: { retailerOffers: { orderBy: { price: 'asc' } } }
+		});
+		if (!component) return response.status(404).json({ message: 'Component not found.' });
+		return response.json(mergeRetailerOffers(component, component.retailerOffers));
+	} catch (error) {
+		console.error('Price comparison failed:', error);
+		return response.status(500).json({ message: 'Unable to load price comparison.' });
+	}
 });
 
 export default router;
